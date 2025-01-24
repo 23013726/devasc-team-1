@@ -1,0 +1,27 @@
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                    PORTS                    NAMES
+4443a6a2a94d        32013aa782a2        "/bin/sh -c 'python3…"   8 weeks ago         Up 8 weeks                0.0.0.0:5050->5050/tcp   samplerunning
+513eb34601dd        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            strange_shaw
+50899b700aa0        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            suspicious_roentgen
+55d501b5c553        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            zen_jepsen
+9124fe5d50c0        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            tender_kepler
+9534a9629deb        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            suspicious_wozniak
+329551069c88        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            goofy_greider
+d47c20530b0f        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            gifted_gates
+bda5200ca2e9        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            youthful_kalam
+c5620c3e7f76        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            tender_lamport
+c646a89cb73e        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            ecstatic_bohr
+d0b919498fb8        alpine              "hostname"               2 months ago        Exited (0) 2 months ago                            amazing_noyce
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                    PORTS                    NAMES
+969f4b0b4816        sampleapp           "/bin/sh -c 'python3…"   6 minutes ago       Up 6 minutes              0.0.0.0:8080->8080/tcp   team1running
+4443a6a2a94d        32013aa782a2        "/bin/sh -c 'python3…"   8 weeks ago         Up 8 weeks                0.0.0.0:5050->5050/tcp   samplerunning
+513eb34601dd        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            strange_shaw
+50899b700aa0        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            suspicious_roentgen
+55d501b5c553        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            zen_jepsen
+9124fe5d50c0        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            tender_kepler
+9534a9629deb        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            suspicious_wozniak
+329551069c88        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            goofy_greider
+d47c20530b0f        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            gifted_gates
+bda5200ca2e9        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            youthful_kalam
+c5620c3e7f76        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            tender_lamport
+c646a89cb73e        a4cb00e84832        "/bin/sh -c 'pip ins…"   2 months ago        Exited (1) 2 months ago                            ecstatic_bohr
+d0b919498fb8        alpine              "hostname"               2 months ago        Exited (0) 2 months ago                            amazing_noyce
