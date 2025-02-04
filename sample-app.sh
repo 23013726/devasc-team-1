@@ -11,6 +11,8 @@ cp -r static/* tempdir/static/.
 echo "FROM python" > tempdir/Dockerfile
 
 cd tempdir
-docker build -t sampleapp .
+docker build -t team1app .
 
-docker run -t
+docker run -t -d -p 8080:8080 --name samplerunning team1app
+
+docker ps -a
