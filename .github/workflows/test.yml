@@ -26,5 +26,5 @@ jobs:
         run: |
           cd test
           python -m unittest testfile.py
-          python -m unittest check_output.py
+          python -m unittest specific_keywords.py
           
