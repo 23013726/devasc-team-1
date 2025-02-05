@@ -26,5 +26,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install flask  # Add other dependencies if needed
 
-    - name: Run Tests
-      run: python -m unittest discover -s test -p "testfile.py"
+    - name: Make sample-app.sh Executable
+      run: chmod +x ./sample-app/sample-app.sh  # Ensure the script is executable
+
+    - name: Run Tests Using sample-app.sh
+      run: ./sample-app/sample-app.sh  # Trigger the sample-app.sh script
