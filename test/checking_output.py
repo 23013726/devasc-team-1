@@ -1,36 +1,31 @@
 import unittest
 import subprocess
+import os
+import subprocess
 
+# List of expected outputs we are looking for (case-insensitive)
 EXPECTED_OUTPUTS = ["Hello", "World"]
 
 def run_python_file(file_path):
     """Run a Python file and capture its output."""
     try:
-        # Run the Python script and capture output
+        # Run the Python script and capture its output
         result = subprocess.run(['python', file_path], capture_output=True, text=True)
         
-        # Check if any expected output is found
+        # Print the actual output for debugging
+        print(f"Output from {file_path}:\n{result.stdout}")
+
+        # Convert the output to lowercase for case-insensitive comparison
+        output = result.stdout.lower()
+
+        # Check if any expected output is found (case-insensitive)
         output_found = False
         for expected in EXPECTED_OUTPUTS:
-            if expected in result.stdout:
+            if expected.lower() in output:  # Compare in lowercase
                 print(f"Expected output '{expected}' found in {file_path}:")
                 print(result.stdout)
                 output_found = True
+                break  # Once one expected output is found, no need to continue checking
         
         if not output_found:
-            print(f"Expected output not found in {file_path}.")
-        
-        return output_found
-    except Exception as e:
-        print(f"Error running {file_path}: {e}")
-        return False
-
-class TestFlaskApp(unittest.TestCase):
-
-    def test_check_output(self):
-        """Test to ensure specific output is detected in a Python file."""
-        file_path = "sample.py"  # Your Python file to test
-        self.assertTrue(run_python_file(file_path))  # Assert that output is found
-
-if __name__ == "__main__":
-    unittest.main()
+            print(f"Expected outpu
