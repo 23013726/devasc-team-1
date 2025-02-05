@@ -1,33 +1,26 @@
-name: Run Flask Tests
+name: Check Code Output
 
 on:
-  push:
-    branches:
-      - '*'  # Triggers on any branch
-  pull_request:
-    branches:
-      - '*'  # Triggers on pull requests to any branch
+  - push
+  - pull_request
 
 jobs:
-  test:
+  check-output:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Set Up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9  # Adjust this if you're using a different Python version
-
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flask  # Add other dependencies if needed
-
-    - name: Make sample-app.sh Executable
-      run: chmod +x ./sample-app/sample-app.sh  # Ensure the script is executable
-
-    - name: Run Tests Using sample-app.sh
-      run: python -m unittest testfile.py
+      - name: Run Tests and Check Output
+        run: |
+          # Run the tests in testfile.py using unittest
+          OUTPUT=$(python3 -m unittest testfile.py)
+          
+          # Check if there was any output from the tests
+          if [ -z "$OUTPUT" ]; then
+            echo "No output detected! Failing the workflow."
+            exit 1
+          else
+            echo "Output detected. Workflow passed."
+          fi
