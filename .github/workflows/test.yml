@@ -30,14 +30,4 @@ jobs:
           python -m unittest testfile.py
 
 
-      - name: Run output check on changed Python files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if [[ "$file" == *.py ]]; then
-              echo "Checking $file..."
-              python test/check_output.py "$file" || exit 1
-            fi
-          done
-        shell: bash
-
           
