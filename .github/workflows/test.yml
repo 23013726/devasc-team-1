@@ -24,7 +24,8 @@ jobs:
 
       - name: Run Tests and Check Output
         run: |
+          # Ensure you are in the correct directory with your test files
           cd test
-          python -m unittest testfile.py
-          python -m unittest specific_keywords.py
-          
+
+          # Run all test files in the test directory, adjust if needed
+          python -m unittest discover -s . -p "*.py"
