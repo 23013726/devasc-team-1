@@ -1,5 +1,6 @@
 # test_output_keywords.py
 import subprocess
+import unittest
 
 def test_output_contains_keywords():
     result = subprocess.run(['python', 'your_script.py'], capture_output=True, text=True)
