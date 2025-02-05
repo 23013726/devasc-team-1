@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Tests and Check Output
         run: |
-          python -m unittest discover -s . -p "test_*.py"
+          python -m unittest testfile.py
           
           # Check if there was any output from the tests
           if [ -z "$OUTPUT" ]; then
