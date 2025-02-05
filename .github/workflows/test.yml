@@ -15,7 +15,7 @@ jobs:
       - name: Run Tests and Check Output
         run: |
           # Run the tests in testfile.py using unittest
-          OUTPUT=$(python3 -m unittest testfile.py)
+          OUTPUT=$(python3 -m unittest discover -s test -p "testfile.py")
           
           # Check if there was any output from the tests
           if [ -z "$OUTPUT" ]; then
