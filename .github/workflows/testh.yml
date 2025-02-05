@@ -1,0 +1,48 @@
+name: Check Code Output
+
+on: [push, pull_request]  # Runs on every commit and PR
+
+jobs:
+  check-output:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Find and Execute Scripts
+        run: |
+          FILES=$(git ls-files '*.py' '*.sh' '*.js')  # Add more file types if needed
+          
+          if [ -z "$FILES" ]; then
+            echo "No script files found!"
+            exit 1
+          fi
+
+          OUTPUT_FOUND=false
+          
+          for FILE in $FILES; do
+            echo "Checking $FILE..."
+            
+            if [[ $FILE == *.py ]]; then
+              OUTPUT=$(python "$FILE" 2>&1)
+            elif [[ $FILE == *.sh ]]; then
+              chmod +x "$FILE"
+              OUTPUT=$(bash "$FILE" 2>&1)
+            elif [[ $FILE == *.js ]]; then
+              OUTPUT=$(node "$FILE" 2>&1)
+            else
+              continue
+            fi
+            
+            if [ -n "$OUTPUT" ]; then
+              echo "Output detected in $FILE:"
+              echo "$OUTPUT"
+              OUTPUT_FOUND=true
+            fi
+          done
+
+          if [ "$OUTPUT_FOUND" = false ]; then
+            echo "No output detected in any scripts!"
+            exit 1
+          fi
