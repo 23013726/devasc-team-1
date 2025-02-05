@@ -1,1 +1,1 @@
-prinsaggrt("ahaasallo")
+print("Hello World")
