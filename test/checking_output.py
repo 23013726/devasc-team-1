@@ -14,7 +14,7 @@ class TestOutput(unittest.TestCase):
         # Get the file path from the command-line arguments
         if len(sys.argv) != 2:
             print("Usage: python check_output.py <file_path>")
-            sys.exit(1)
+            self.fail("Missing file path argument.")  # Fail the test instead of exiting
 
         file_path = sys.argv[1]
 
@@ -39,7 +39,8 @@ class TestOutput(unittest.TestCase):
 
 if __name__ == "__main__":
     # Remove the first argument (the script name) to avoid interfering with unittest
-    sys.argv = sys.argv[:1] + sys.argv[2:]
+    if len(sys.argv) > 1:
+        sys.argv = [sys.argv[0]] + sys.argv[2:]
 
     # Run the tests
     unittest.main()
