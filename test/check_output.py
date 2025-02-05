@@ -23,14 +23,30 @@ class TestPythonFiles(unittest.TestCase):
                 check=True
             )
 
+            # Debugging: Print stdout and stderr
+            print(f"=== Debug: Output of {file_path} ===")
+            print("stdout:", result.stdout)
+            print("stderr:", result.stderr)
+
             # Check for errors in stderr
-            self.assertFalse(result.stderr.strip(), f"Errors found in {file_path}:\n{result.stderr}")
+            if result.stderr.strip():
+                print(f"❌ Errors found in {file_path}:\n{result.stderr}")
+                self.fail(f"Errors found in {file_path}:\n{result.stderr}")
 
             # Check if there is any valid output in stdout
-            self.assertTrue(result.stdout.strip(), f"No output produced by {file_path}.")
+            if not result.stdout.strip():
+                print(f"❌ No output produced by {file_path}.")
+                self.fail(f"No output produced by {file_path}.")
+
+            print(f"✅ Valid output in {file_path}:\n{result.stdout}")
 
         except subprocess.CalledProcessError as e:
             # Handle cases where the script exits with a non-zero status
+            print(f"❌ Error running {file_path} (exit code {e.returncode}):")
+            print("=== stderr ===")
+            print(e.stderr)
+            print("=== stdout ===")
+            print(e.stdout)
             self.fail(f"Error running {file_path} (exit code {e.returncode}):\n{e.stderr}")
 
 if __name__ == "__main__":
