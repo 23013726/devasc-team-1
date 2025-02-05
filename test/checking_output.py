@@ -11,7 +11,12 @@ class TestOutput(unittest.TestCase):
         """
         Test if the Python file produces any output.
         """
-        file_path = sys.argv[1]  # Get the file path from command-line arguments
+        # Get the file path from the command-line arguments
+        if len(sys.argv) != 2:
+            print("Usage: python check_output.py <file_path>")
+            sys.exit(1)
+
+        file_path = sys.argv[1]
 
         try:
             # Run the Python file and capture stdout
@@ -33,12 +38,8 @@ class TestOutput(unittest.TestCase):
             self.fail(f"Error running {file_path}: {e}")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python check_output.py <file_path>")
-        sys.exit(1)
-
-    # Add the file path to the test arguments
-    sys.argv = [sys.argv[0]] + [sys.argv[1]]
+    # Remove the first argument (the script name) to avoid interfering with unittest
+    sys.argv = sys.argv[:1] + sys.argv[2:]
 
     # Run the tests
     unittest.main()
