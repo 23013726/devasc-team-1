@@ -1,22 +1,33 @@
-name: Run Python Tests
+name: Run Flask Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '*'  # Triggers on any branch
+  pull_request:
+    branches:
+      - '*'  # Triggers on pull requests to any branch
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'  # Change if needed
+    - name: Set Up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9  # Adjust this if you're using a different Python version
 
-      - name: 📦 Install Dependencies (if any)
-        run: pip install -r requirements.txt || echo "No dependencies"
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flask  # Add other dependencies if needed
 
-      - name: 🧪 Run Tests
-        run: python -m unittest discover -s . -p "test_*.py"
+    - name: Make sample-app.sh Executable
+      run: chmod +x ./sample-app/sample-app.sh  # Ensure the script is executable
+
+    - name: Run Tests Using sample-app.sh
+      run: ./sample-app/sample-app.sh  # Trigger the sample-app.sh script
