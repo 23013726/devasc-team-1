@@ -28,4 +28,38 @@ jobs:
           cd test
           python -m unittest checking_output.py
           python -m unittest testfile.py
+
+
+      - name: Find Python Files and Check Output
+        run: |
+          # Find Python files that are part of the commit
+          FILES=$(git diff --name-only HEAD~1 HEAD | grep -E '\.py$')
+          
+          if [ -z "$FILES" ]; then
+            echo "No Python files changed in this commit!"
+            exit 0
+          fi
+
+          OUTPUT_FOUND=false
+          
+          # Loop through all Python files and check output
+          for FILE in $FILES; do
+            echo "Checking $FILE..."
+            
+            # Run the Python script and capture the output
+            OUTPUT=$(python "$FILE")
+            
+            # Check if there is any output
+            if [ -n "$OUTPUT" ]; then
+              echo "Output detected in $FILE:"
+              echo "$OUTPUT"
+              OUTPUT_FOUND=true
+            fi
+          done
+
+          # If no output was found in any files, fail the workflow
+          if [ "$OUTPUT_FOUND" = false ]; then
+            echo "No output detected in any Python files!"
+            exit 1
+          fi
           
