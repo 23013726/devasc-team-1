@@ -26,19 +26,5 @@ jobs:
         run: |
           cd test
           python -m unittest testfile.py
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v35
-        with:
-          since_last_remote_commit: 'true'
-
-      - name: Run output check on changed Python files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if [[ "$file" == *.py ]]; then
-              echo "Checking $file..."
-              python test/check_output.py "$file" || exit 1
-            fi
-          done
-        shell: bash  
+          python -m unittest check_output.py
+          
