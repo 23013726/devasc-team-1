@@ -22,10 +22,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Tests and Check Output
-        run: |
-          # Run the tests in testfile.py using unittest
-          OUTPUT=$(python3 -m unittest discover -s test -p "testfile.py")
+      - name: 🧪 Run Tests
+        run: python -m unittest discover -s . -p "test_*.py"
           
           # Check if there was any output from the tests
           if [ -z "$OUTPUT" ]; then
