@@ -1,2 +1,1 @@
-aNO h asl e
-asa
+print("hallo")
