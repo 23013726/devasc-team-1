@@ -1,40 +1,46 @@
+import unittest
 import subprocess
 import sys
 
-def check_output(file_path):
+class TestOutput(unittest.TestCase):
     """
-    Check if the given Python file produces any output.
+    Test case to check if a Python file produces any output.
     """
-    try:
-        # Run the Python file and capture stdout
-        result = subprocess.run(
-            [sys.executable, file_path],
-            capture_output=True,
-            text=True
-        )
 
-        # Debugging: Print stdout and stderr
-        print(f"=== Debug: Output of {file_path} ===")
-        print("stdout:", result.stdout)
-        print("stderr:", result.stderr)
+    def test_output(self):
+        """
+        Test if the Python file produces any output.
+        """
+        # Get the file path from the command-line arguments
+        if len(sys.argv) != 2:
+            print("Usage: python check_output.py <file_path>")
+            self.fail("Missing file path argument.")  # Fail the test instead of exiting
 
-        # Fail if stdout is empty
-        if not result.stdout.strip():
-            print(f"❌ No output produced by {file_path}.")
-            return False
+        file_path = sys.argv[1]
 
-        print(f"✅ Valid output in {file_path}:\n{result.stdout}")
-        return True
+        try:
+            # Run the Python file and capture stdout
+            result = subprocess.run(
+                [sys.executable, file_path],
+                capture_output=True,
+                text=True
+            )
 
-    except Exception as e:
-        print(f"❌ Error running {file_path}: {e}")
-        return False
+            # Debugging: Print stdout and stderr
+            print(f"=== Debug: Output of {file_path} ===")
+            print("stdout:", result.stdout)
+            print("stderr:", result.stderr)
+
+            # Fail if stdout is empty
+            self.assertTrue(result.stdout.strip(), f"No output produced by {file_path}.")
+
+        except Exception as e:
+            self.fail(f"Error running {file_path}: {e}")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python check_output.py <file_path>")
-        sys.exit(1)
+    # Remove the first argument (the script name) to avoid interfering with unittest
+    if len(sys.argv) > 1:
+        sys.argv = [sys.argv[0]] + sys.argv[2:]
 
-    file_path = sys.argv[1]
-    if not check_output(file_path):
-        sys.exit(1)  # Exit with error if no output is produced
+    # Run the tests
+    unittest.main()
