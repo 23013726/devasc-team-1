@@ -1,1 +1,1 @@
-prasdint("Heallo World")
+print("Heallo World")
