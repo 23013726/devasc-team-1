@@ -4,7 +4,7 @@ import sys
 
 def run_code_and_check_output(file_path):
     try:
-        # Run the Python file and capture the output
+        # Run the Python file and capture the output and errors
         result = subprocess.run(
             [sys.executable, file_path],
             capture_output=True,
@@ -12,7 +12,12 @@ def run_code_and_check_output(file_path):
             check=True
         )
         
-        # Check if there is any output
+        # Check for errors in stderr
+        if result.stderr.strip():
+            print(f"Error in {file_path}: {result.stderr}")
+            return False
+        
+        # Check if there is any valid output in stdout
         if result.stdout.strip():
             print(f"Output produced by {file_path}: {result.stdout}")
             return True
@@ -20,7 +25,8 @@ def run_code_and_check_output(file_path):
             print(f"No output produced by {file_path}.")
             return False
     except subprocess.CalledProcessError as e:
-        print(f"Error running {file_path}: {e}")
+        # Handle cases where the script exits with a non-zero status
+        print(f"Error running {file_path}: {e.stderr}")
         return False
 
 if __name__ == "__main__":
@@ -30,4 +36,4 @@ if __name__ == "__main__":
     
     file_path = sys.argv[1]
     if not run_code_and_check_output(file_path):
-        sys.exit(1)  # Exit with error if no output is produced
+        sys.exit(1)  # Exit with error if the script fails
