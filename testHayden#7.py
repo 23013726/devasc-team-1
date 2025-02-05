@@ -1,1 +1,1 @@
-prinsaeggrt("haallo")
+prinsaeaggrt("haallo")
