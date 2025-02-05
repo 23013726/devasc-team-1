@@ -21,7 +21,12 @@ class TestOutput(unittest.TestCase):
                 text=True
             )
 
-            # Check if stdout is not empty
+            # Debugging: Print stdout and stderr
+            print(f"=== Debug: Output of {file_path} ===")
+            print("stdout:", result.stdout)
+            print("stderr:", result.stderr)
+
+            # Fail if stdout is empty
             self.assertTrue(result.stdout.strip(), f"No output produced by {file_path}.")
 
         except Exception as e:
