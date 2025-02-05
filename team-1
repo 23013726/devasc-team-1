@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo -n "Enter Your Name: "
+read userName
+
+echo -n "Enter Your ID: "
+read userID
+
+echo "Your name is $userName."
+echo "Your ID is $userID."
