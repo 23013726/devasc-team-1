@@ -26,5 +26,6 @@ jobs:
         run: |
           # Ensure you are in the correct directory with your test files
           cd test
-          python -m unittest specific_keywords.py
+          python -m unittest checking_output.py
+          python -m unittest testfile.py
           
