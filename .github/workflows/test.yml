@@ -26,11 +26,3 @@ jobs:
         run: |
           cd test
           python -m unittest testfile.py
-          
-          # Check if there was any output from the tests
-          if [ -z "$OUTPUT" ]; then
-            echo "No output detected! Failing the workflow."
-            exit 1
-          else
-            echo "Output detected. Workflow passed."
-          fi
