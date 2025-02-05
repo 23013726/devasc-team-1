@@ -25,7 +25,7 @@ jobs:
       - name: Run Tests and Check Output
         run: |
           cd test
-          python -m unittest test.testfile.py
+          python -m unittest testfile.py
           
           # Check if there was any output from the tests
           if [ -z "$OUTPUT" ]; then
