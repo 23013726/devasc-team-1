@@ -28,6 +28,8 @@ jobs:
           cd test
           python -m unittest checking_output.py
           python -m unittest testfile.py
-
+          python -m unittest test_assertions.py
+          python -m unittest test_syntax.py
+          
 
           
