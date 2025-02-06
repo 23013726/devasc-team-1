@@ -6,7 +6,7 @@ sample = Flask(__name__)
 
 @sample.route("/")
 
-def main():
+def main(): 
     return render_template("index.html")
 
 if __name__ == "__main__":
