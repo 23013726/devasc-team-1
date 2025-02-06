@@ -38,7 +38,6 @@ class TestOutput(unittest.TestCase):
             self.fail(f"Error running {file_path}: {e}")
 
 if __name__ == "__main__":
-    # Remove the first argument (the script name) to avoid interfering with unittest
     if len(sys.argv) > 1:
         sys.argv = [sys.argv[0]] + sys.argv[2:]
 
