@@ -37,3 +37,23 @@ docker run -t -d -p 5050:5050 --name samplerunning sampleapp
 docker ps -a
 
 =======
+
+echo "EXPOSE 5050" >> tempdir/Dockerfile
+
+echo "CMD python3 /home/myapp/sample_app.py" >> tempdir/Dockerfile
+
+
+
+cd tempdir
+
+
+
+docker build -t sampleapp .
+
+
+
+docker run -t -d -p 5050:5050 --name samplerunning sampleapp
+
+docker ps -a
+
+>>>>>>> a10169e5eed28e63406e3f0129d8d8ceaf5552e3
