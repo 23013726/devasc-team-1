@@ -1,5 +1,6 @@
 import pytest
 import glob
+import unittest
 import py_compile
 
 def test_syntax():
